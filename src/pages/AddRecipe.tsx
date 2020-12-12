@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
@@ -40,6 +40,8 @@ const AddRecipe = () => {
   const [requireTime, setRequireTime] = React.useState(0);
   const [ingredient, setIngredient] = React.useState('');
   const [recipeText, setRecipeText] = React.useState('');
+
+  const ingredientRef = useRef<HTMLInputElement>(null);
 
   const smallCategoryList = [
     'ご飯',
@@ -139,6 +141,7 @@ const AddRecipe = () => {
       </FormControl>
       <FormControl className={classes.formControl}>
         <TextField
+          inputRef={ingredientRef}
           id="standard-multiline-static"
           label="材料"
           value={ingredient}
@@ -153,7 +156,10 @@ const AddRecipe = () => {
           key={symbol}
           label={symbol}
           className={classes.chip}
-          onClick={() => setIngredient(ingredient + symbol)}
+          onClick={() => {
+            ingredientRef?.current?.focus();
+            setIngredient(ingredient + symbol);
+          }}
         />
       ))}
       <FormControl className={classes.formControl}>
