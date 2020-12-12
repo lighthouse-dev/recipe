@@ -7,6 +7,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import Chip from '@material-ui/core/Chip';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     chip: {
       margin: 2
+    },
+    absolute: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(3)
     }
   })
 );
@@ -139,6 +146,15 @@ const AddRecipe = () => {
         />
       </FormControl>
       {/* TODO: イメージアップロード実装  */}
+      <Fab
+        color="secondary"
+        className={classes.absolute}
+        onClick={() => {
+          // TODO: 登録処理
+        }}
+      >
+        <AddIcon />
+      </Fab>
     </>
   );
 };
