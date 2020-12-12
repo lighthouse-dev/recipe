@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-// import Button from "@material-ui/core/Button";
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -139,18 +138,7 @@ const AddRecipe = () => {
           }
         />
       </FormControl>
-      {/*
-          
-          イメージ 
-    */}
-      {/* <Button
-        variant="contained"
-        size="large"
-        color="primary"
-        className={classes.margin}
-      >
-        Large
-      </Button> */}
+      {/* TODO: イメージアップロード実装  */}
     </>
   );
 };
