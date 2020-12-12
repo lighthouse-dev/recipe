@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '0 5px'
     },
     absolute: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: theme.spacing(2),
-      right: theme.spacing(3)
+      right: theme.spacing(2)
     }
   })
 );
