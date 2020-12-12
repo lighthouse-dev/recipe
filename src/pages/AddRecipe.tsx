@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap'
     },
     chip: {
-      margin: 2
+      margin: 5,
+      padding: '0 5px'
     },
     absolute: {
       position: 'absolute',
@@ -51,6 +52,19 @@ const AddRecipe = () => {
     '肉',
     '魚',
     'たれソース'
+  ];
+
+  const ingredientInputSupportSymbolList = [
+    'ml',
+    'g',
+    '℃',
+    '½',
+    '⅓',
+    '¼',
+    '大',
+    '小',
+    '適量',
+    '少々'
   ];
 
   return (
@@ -127,25 +141,35 @@ const AddRecipe = () => {
         <TextField
           id="standard-multiline-static"
           label="材料"
+          value={ingredient}
           multiline
-          rows={2}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setIngredient(event.target.value)
           }
         />
       </FormControl>
+      {ingredientInputSupportSymbolList.map(symbol => (
+        <Chip
+          key={symbol}
+          label={symbol}
+          className={classes.chip}
+          onClick={() => setIngredient(ingredient + symbol)}
+        />
+      ))}
       <FormControl className={classes.formControl}>
         <TextField
           id="standard-multiline-static"
           label="作り方"
           multiline
-          rows={6}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setRecipeText(event.target.value)
           }
         />
       </FormControl>
-      {/* TODO: イメージアップロード実装  */}
+      {/*
+        TODO: イメージアップロード実装
+        https://codesandbox.io/s/vj1q68zm25?file=/src/ImageUpload.js:4575-4592
+      */}
       <Fab
         color="secondary"
         className={classes.absolute}
