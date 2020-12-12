@@ -7,6 +7,7 @@
 - [recipe](#recipe)
   - [要件](#要件)
     - [入力](#入力)
+  - [Deploy](#deploy)
 
 <!-- /code_chunk_output -->
 
@@ -38,3 +39,8 @@
   - 材料
   - 作り方
   - イメージ
+
+## Deploy
+
+    yarn run build
+    firebase deploy --only hosting
