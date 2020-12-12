@@ -32,6 +32,7 @@ const AddRecipe = () => {
   const [smallCategory, setSmallCategory] = React.useState<string[]>([]);
   const [requireTime, setRequireTime] = React.useState(0);
   const [ingredient, setIngredient] = React.useState('');
+  const [recipeText, setRecipeText] = React.useState('');
 
   const smallCategoryList = [
     'ご飯',
@@ -89,7 +90,12 @@ const AddRecipe = () => {
           renderValue={selected => (
             <div className={classes.chips}>
               {(selected as string[]).map(value => (
-                <Chip key={value} label={value} className={classes.chip} />
+                <Chip
+                  key={value}
+                  label={value}
+                  className={classes.chip}
+                  color="primary"
+                />
               ))}
             </div>
           )}
@@ -122,9 +128,19 @@ const AddRecipe = () => {
           }
         />
       </FormControl>
+      <FormControl className={classes.formControl}>
+        <TextField
+          id="standard-multiline-static"
+          label="作り方"
+          multiline
+          rows={6}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setRecipeText(event.target.value)
+          }
+        />
+      </FormControl>
       {/*
           
-          作り方
           イメージ 
     */}
       {/* <Button
