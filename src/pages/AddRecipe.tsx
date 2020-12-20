@@ -9,6 +9,7 @@ import Input from '@material-ui/core/Input';
 import Chip from '@material-ui/core/Chip';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { addRecipe } from '../utils/firebase';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -180,7 +181,18 @@ const AddRecipe = () => {
         color="secondary"
         className={classes.absolute}
         onClick={() => {
-          // TODO: 登録処理
+          const recipeData = {
+            title,
+            largeCategory,
+            smallCategory,
+            requireTime,
+            ingredient,
+            recipeText
+          };
+
+          addRecipe(recipeData).then(_ => {
+            window.location.href = '/list';
+          });
         }}
       >
         <AddIcon />

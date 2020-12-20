@@ -3,6 +3,15 @@ import * as firebaseui from 'firebaseui';
 import 'firebase/firestore';
 import ENV from '../env.json';
 
+type RecipeDate = {
+  title: string;
+  largeCategory: string;
+  smallCategory: string[];
+  requireTime: number;
+  ingredient: string;
+  recipeText: string;
+};
+
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
   authDomain: ENV.FIREBASE_AUTH_DOMAIN,
@@ -18,6 +27,8 @@ const initFirebase = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app();
 
+const db = initFirebase.firestore();
+const firebaseAuth = initFirebase.auth(); // ${auth?.currentUser?.uid}
 const firebaseAuthUI =
   firebaseui.auth.AuthUI.getInstance() ||
   new firebaseui.auth.AuthUI(firebase.auth());
@@ -68,4 +79,13 @@ const firebaseAuthUIConfig = {
   // }
 };
 
-export { initFirebase, firebaseAuthUIConfig, firebaseAuthUI };
+const addRecipe = async (recipeDate: RecipeDate) =>
+  await db
+    .collection(`recipes`)
+    .doc()
+    .set({ ...recipeDate, writer: firebaseAuth?.currentUser?.uid })
+    .catch(err => {
+      console.error(err);
+    });
+
+export { initFirebase, firebaseAuthUIConfig, firebaseAuthUI, addRecipe };
