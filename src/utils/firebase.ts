@@ -37,23 +37,25 @@ const firebaseAuthUIConfig = {
     firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],
   callbacks: {
-    signInSuccessWithAuthResult: function (authResult: any, redirectUrl: any) {
+    signInSuccessWithAuthResult: (
+      authResult: firebaseui.auth.AuthUI,
+      redirectUrl: string
+    ) => {
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
       console.log(authResult);
       console.log(redirectUrl);
-
       debugger;
       return true;
-    }
-  },
-  uiShown: function () {
-    // The widget is rendered.
-    // Hide the loader.
-    const loaderElem = document.getElementById('loader') ?? null;
-    if (loaderElem) {
-      loaderElem.style.display = 'none';
+    },
+    uiShown: () => {
+      // The widget is rendered.
+      // Hide the loader.
+      const loaderElem = document.getElementById('loader') ?? null;
+      if (loaderElem) {
+        loaderElem.style.display = 'none';
+      }
     }
   }
   // tosUrl and privacyPolicyUrl accept either url string or a callback
