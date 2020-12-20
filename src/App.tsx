@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const App = () => {
   const classes = useStyles();
   return (
+    // TODO: レシピ登録（Firebase）
+    // TODO: レシピ取得（Firebase）
+    // TODO: レシピ検索（Firebase）
+    // TODO: Logout
+    // TODO: Web UI対応
     <>
       <Router>
         {/* <Link to="/add">add</Link> */}
